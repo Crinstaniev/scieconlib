@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: scieconlib
+Version: 0.0.4
+Summary: Tools for SciEcon projects
+Home-page: UNKNOWN
+Author: Crinstaniev
+Author-email: zhuangzesen@gmail.com
+License: MIT
+Keywords: python,game theory,econ
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Education
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+
+Tools for SciEcon projects
+

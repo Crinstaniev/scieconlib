@@ -32,8 +32,6 @@ class Action(object):
 
             action = Action.from_distribution_func(dist_func)
 
-
-
         :param dist_func: function that returns a random number from the distribution
         :type dist_func: function
         :return: :class:`Action` object
