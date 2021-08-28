@@ -86,11 +86,13 @@ class Action(object):
         self.number = number
         return
 
-    def hist(self):
+    def dist_plot(self, samples=1000):
         """
-        Draw the distribution histogram
+        Draw the distribution plot
 
+        :param samples: number of sample
+        :type samples: int
         :return: None
         """
-        self.distribution.hist()
+        self.distribution.dist_plot(samples)
         return

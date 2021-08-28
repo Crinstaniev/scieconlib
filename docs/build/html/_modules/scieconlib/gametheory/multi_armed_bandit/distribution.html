@@ -195,20 +195,27 @@
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">dist_func</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Distribution.hist"><a class="viewcode-back" href="../../../../game_theory/distribution.html#scieconlib.gametheory.multi_armed_bandit.distribution.Distribution.hist">[docs]</a>    <span class="k">def</span> <span class="nf">hist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Distribution.dist_plot"><a class="viewcode-back" href="../../../../game_theory/distribution.html#scieconlib.gametheory.multi_armed_bandit.distribution.Distribution.dist_plot">[docs]</a>    <span class="k">def</span> <span class="nf">dist_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plot the distribution histogram</span>
 
-<span class="sd">        :return: None</span>
+<span class="sd">        :param samples: number of samples</span>
+<span class="sd">        :type samples: int</span>
+<span class="sd">        :param show: whether to show plot</span>
+<span class="sd">        :type show: bool</span>
+<span class="sd">        :return: plotly figure object</span>
+<span class="sd">        :rtype: plotly.Figure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generate</span><span class="p">())</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2500</span><span class="p">)]]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generate</span><span class="p">())</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">samples</span><span class="p">)]]</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">ff</span><span class="o">.</span><span class="n">create_distplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;sample&#39;</span><span class="p">])</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
             <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Sample Distribution&#39;</span><span class="p">,</span>
             <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Sample Data&#39;</span>
         <span class="p">)</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-        <span class="k">return</span></div>
+        <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="k">return</span> <span class="n">fig</span></div>
 
 <div class="viewcode-block" id="Distribution.array_to_dist"><a class="viewcode-back" href="../../../../game_theory/distribution.html#scieconlib.gametheory.multi_armed_bandit.distribution.Distribution.array_to_dist">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">array_to_dist</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>

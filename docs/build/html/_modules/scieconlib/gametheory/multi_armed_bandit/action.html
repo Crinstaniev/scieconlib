@@ -242,13 +242,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Action.hist"><a class="viewcode-back" href="../../../../game_theory/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.hist">[docs]</a>    <span class="k">def</span> <span class="nf">hist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Action.dist_plot"><a class="viewcode-back" href="../../../../game_theory/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.dist_plot">[docs]</a>    <span class="k">def</span> <span class="nf">dist_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Draw the distribution histogram</span>
+<span class="sd">        Draw the distribution plot</span>
 
+<span class="sd">        :param samples: number of sample</span>
+<span class="sd">        :type samples: int</span>
 <span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">dist_plot</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
         <span class="k">return</span></div></div>
 </pre></div>
 

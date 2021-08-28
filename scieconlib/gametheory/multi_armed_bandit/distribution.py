@@ -39,20 +39,27 @@ class Distribution(object):
 
         return cls(dist_func)
 
-    def hist(self):
+    def dist_plot(self, samples=1000, show=True):
         """
         Plot the distribution histogram
 
-        :return: None
+        :param samples: number of samples
+        :type samples: int
+        :param show: whether to show plot
+        :type show: bool
+        :return: plotly figure object
+        :rtype: plotly.Figure
         """
-        data = [[float(self.generate()) for _ in range(2500)]]
+        data = [[float(self.generate()) for _ in range(samples)]]
         fig = ff.create_distplot(data, ['sample'])
         fig.update_layout(
             title='Sample Distribution',
             xaxis_title='Sample Data'
         )
-        fig.show()
-        return
+        if show:
+            fig.show()
+            return
+        return fig
 
     @staticmethod
     def array_to_dist(arr):

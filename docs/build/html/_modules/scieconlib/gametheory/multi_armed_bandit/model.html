@@ -158,6 +158,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
 <span class="kn">from</span> <span class="nn">.agent</span> <span class="kn">import</span> <span class="n">Agent</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
@@ -224,29 +225,44 @@
         <span class="c1"># generate agents</span>
         <span class="n">history</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;avg_reward&#39;</span><span class="p">:</span> <span class="p">[],</span>
-            <span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="p">[]</span>
+            <span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;freq&#39;</span><span class="p">:</span> <span class="p">[]</span>
         <span class="p">}</span>
         <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">agents</span> <span class="o">=</span> <span class="p">[</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent_num</span><span class="p">)]</span>
+        <span class="n">rec_avg_freq</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epochs</span><span class="p">)):</span>
+            <span class="n">ts</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">agent</span> <span class="ow">in</span> <span class="n">agents</span><span class="p">:</span>
                 <span class="n">explore</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_roll</span><span class="p">()</span>
                 <span class="k">if</span> <span class="n">explore</span><span class="p">:</span>
                     <span class="n">action_num</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">pick_action</span><span class="p">()</span>
                     <span class="n">agent</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">action_num</span><span class="p">)</span>
+                    <span class="n">ts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">agent</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">action_num</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">get_greedy</span><span class="p">()</span>
                     <span class="n">agent</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">action_num</span><span class="p">)</span>
+                    <span class="n">ts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">agent</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
             <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">history</span><span class="p">[</span><span class="s1">&#39;num&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span>
             <span class="n">avg_reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">([</span><span class="n">agent</span><span class="o">.</span><span class="n">get_avg</span><span class="p">()</span> <span class="k">for</span> <span class="n">agent</span> <span class="ow">in</span> <span class="n">agents</span><span class="p">])</span>
             <span class="n">history</span><span class="p">[</span><span class="s1">&#39;avg_reward&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">avg_reward</span><span class="p">)</span>
+            <span class="c1"># calculate average freq</span>
+            <span class="n">t_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">avg_freq</span> <span class="o">=</span> <span class="n">t_sum</span> <span class="o">/</span> <span class="n">t_sum</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+            <span class="n">rec_avg_freq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">avg_freq</span><span class="p">)</span>
+        <span class="n">history</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rec_avg_freq</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="n">history</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Model.draw"><a class="viewcode-back" href="../../../../game_theory/model.html#scieconlib.gametheory.multi_armed_bandit.model.Model.draw">[docs]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.draw_avg_reward"><a class="viewcode-back" href="../../../../game_theory/model.html#scieconlib.gametheory.multi_armed_bandit.model.Model.draw_avg_reward">[docs]</a>    <span class="k">def</span> <span class="nf">draw_avg_reward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Draw the learning curve</span>
+<span class="sd">        Draw average reward plot</span>
+
+<span class="sd">        :param show: whether to show plot</span>
+<span class="sd">        :type show: bool</span>
+<span class="sd">        :return: plotly figure object</span>
+<span class="sd">        :rtype: plotly.Figure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="p">)</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;avg_reward&#39;</span><span class="p">)</span>
@@ -255,8 +271,42 @@
             <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;epochs&#39;</span><span class="p">,</span>
             <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;avg reward&#39;</span>
         <span class="p">)</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-        <span class="k">return</span></div></div>
+        <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="k">return</span> <span class="n">fig</span></div>
+
+<div class="viewcode-block" id="Model.draw_avg_freq"><a class="viewcode-back" href="../../../../game_theory/model.html#scieconlib.gametheory.multi_armed_bandit.model.Model.draw_avg_freq">[docs]</a>    <span class="k">def</span> <span class="nf">draw_avg_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Draw stacked area plot for avg frequency of choosing each action</span>
+
+<span class="sd">        :return: plotly figure object</span>
+<span class="sd">        :rtype: plotly.graph_objects.Figure</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epochs</span><span class="p">)]</span>
+        <span class="n">ys</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">action_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">action_num</span><span class="p">):</span>
+            <span class="n">payload</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[:,</span> <span class="n">action_num</span><span class="p">]</span>
+            <span class="n">ys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">action_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">action_num</span><span class="p">):</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">ys</span><span class="p">[</span><span class="n">action_num</span><span class="p">],</span>
+                <span class="n">hoverinfo</span><span class="o">=</span><span class="s1">&#39;x+y&#39;</span><span class="p">,</span>
+                <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span>
+                <span class="n">stackgroup</span><span class="o">=</span><span class="s1">&#39;one&#39;</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Action </span><span class="si">{</span><span class="n">action_num</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="p">))</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Average frequency&#39;</span><span class="p">,</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;epochs&#39;</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;avg frequency&#39;</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="k">return</span> <span class="n">fig</span></div></div>
 </pre></div>
 
            </div>
