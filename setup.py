@@ -15,8 +15,8 @@ setup(
     long_description=LONG_DESCRIPTION,
     packages=find_packages(),
     install_requires=['plotly', 'numpy', 'pandas', 'scipy', 'tqdm'],
-    license='MIT',
-    keywords=['python', 'game theory', 'econ'],
+    # license='GPL',
+    keywords=['python', 'game theory', 'economy'],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Education",

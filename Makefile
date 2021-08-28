@@ -11,3 +11,6 @@ upload:
 
 freeze:
 	pip freeze > requirements.txt
+
+docker:
+	cp ./common/Dockerfile ./docs/build/html/Dockerfile

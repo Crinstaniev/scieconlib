@@ -88,7 +88,7 @@ class Model(object):
         self.history = history
         return
 
-    def history(self):
+    def draw(self):
         """
         Draw the learning curve
         """

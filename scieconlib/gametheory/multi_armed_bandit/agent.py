@@ -105,7 +105,8 @@ class Agent(object):
         :type desc: bool
         :param printing: whether to print
         :type printing: bool
-        :return: None
+        :return: Info dataframe
+        :rtype: pd.DataFrame
         """
         print(f'Number of actions: {self.action_num}')
         df = pd.DataFrame()
