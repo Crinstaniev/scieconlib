@@ -7,6 +7,13 @@ scieconlib.egg-info/dependency_links.txt
 scieconlib.egg-info/requires.txt
 scieconlib.egg-info/top_level.txt
 scieconlib/gametheory/__init__.py
+scieconlib/gametheory/multi_agents/__init__.py
+scieconlib/gametheory/multi_agents/agent.py
+scieconlib/gametheory/multi_agents/model.py
+scieconlib/gametheory/multi_agents/test.py
+scieconlib/gametheory/multi_agents/examples/__init__.py
+scieconlib/gametheory/multi_agents/examples/prisoner_dilemma.py
+scieconlib/gametheory/multi_agents/examples/test.py
 scieconlib/gametheory/multi_armed_bandit/__init__.py
 scieconlib/gametheory/multi_armed_bandit/action.py
 scieconlib/gametheory/multi_armed_bandit/agent.py

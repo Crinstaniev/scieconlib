@@ -4,6 +4,7 @@ from .distribution import Distribution
 class Action(object):
     """
     This class defined an action.
+
     :param distribution: The distribution function
     :type distribution: Distribution
     """
@@ -21,7 +22,7 @@ class Action(object):
     @classmethod
     def from_distribution_func(cls, dist_func):
         """
-        Generate an :class:`Action` object from distribution function
+        Generate an :class:`scieconlib.gametheory.multi_armed_bandit.action.Action` object from distribution function
 
         .. code-block:: python
 
@@ -34,8 +35,8 @@ class Action(object):
 
         :param dist_func: function that returns a random number from the distribution
         :type dist_func: function
-        :return: :class:`Action` object
-        :rtype: Action
+        :return: :class:`scieconlib.gametheory.multi_armed_bandit.action.Action` object
+        :rtype: scieconlib.gametheory.multi_armed_bandit.action.Action
         """
         dist = Distribution.from_dist_func(dist_func)
         return cls(dist)
@@ -43,7 +44,7 @@ class Action(object):
     @classmethod
     def from_array(cls, arr):
         """
-        Construct an :class:`Action` from samples
+        Construct an :class:`scieconlib.gametheory.multi_armed_bandit.action.Action` from samples
 
         .. code-block:: python
 
@@ -51,8 +52,8 @@ class Action(object):
 
         :param arr: sample array
         :type arr: list
-        :return: :class:`Action` object
-        :rtype: Action
+        :return: :class:`scieconlib.gametheory.multi_armed_bandit.action.Action` object
+        :rtype: scieconlib.gametheory.multi_armed_bandit.action.Action
         """
         distribution = Distribution.from_array(arr)
         return cls(distribution)

@@ -2,6 +2,10 @@
 
 This is a machine learning toolkit to game theory or econometrics analysis.
 
+## Documentation
+
+You can find the doc at http://scieconlib.ppsh.su/
+
 ## Dev environment setup
 
 In your virtual environment, run
@@ -55,5 +59,6 @@ model = bandit.Model(
 model.train()
 
 # draw the result
-model.history()
+model.draw_avg_freq()
+model.draw_avg_freq()
 ```

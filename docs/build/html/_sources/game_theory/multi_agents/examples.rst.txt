@@ -1,0 +1,49 @@
+Examples
+========
+
+Here we provide some example implementation of this model.
+
+Prisoner's Dilemma
+------------------
+
+Here are the sample classes that implements prisoner's Dilemma using multi-agents model.
+
+.. automodule:: scieconlib.gametheory.multi_agents.examples.prisoner_dilemma
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+How to use:
+
+.. code-block:: python
+
+    import matplotlib.pyplot as plt
+    from scieconlib.gametheory.multi_agents.examples.prisoner_dilemma import PrisonerModel, PrisonerAgent
+
+    model = PrisonerModel(
+        agent=PrisonerAgent(),
+        agent_copies_num=20,
+        epochs=200,
+        epsilon=0.1
+    )
+    model.compile()
+    model.train(verbose=1)
+    history = model.get_history()
+    fig, axs = plt.subplots(2)
+    for i in range(2):
+        axs[i].plot(history[i].index, history[i]['avg_0'], label='keep silence')
+        axs[i].plot(history[i].index, history[i]['avg_1'], label='betray')
+        axs[i].set_title(f'Agent {i} - avg value')
+        axs[i].legend()
+        axs[i].grid()
+        axs[i].set_xlabel('epochs')
+        axs[i].set_ylabel('avg-value')
+    fig.set_dpi(200)
+    fig.subplots_adjust(
+        hspace=.5
+    )
+    fig.show()
+
+And the result will be looking like
+
+.. figure:: ./imgs/prisoner.png

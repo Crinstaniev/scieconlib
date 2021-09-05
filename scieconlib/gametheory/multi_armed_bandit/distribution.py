@@ -18,7 +18,8 @@ class Distribution(object):
     @classmethod
     def from_dist_func(cls, dist_func):
         """
-        Generate a :class:`Distribution` object from distribution function
+        Generate a :class:`scieconlib.gametheory.multi_armed_bandit.distribution.Distribution` object from distribution
+        function
 
         .. code-block:: python
 
@@ -31,7 +32,7 @@ class Distribution(object):
 
         :param dist_func: distribution function
         :type dist_func: function
-        :return: :class:`Distribution` object
+        :return: :class:`scieconlib.gametheory.multi_armed_bandit.distribution.Distribution` object
         :rtype: object
         """
         sample = dist_func()
@@ -80,7 +81,7 @@ class Distribution(object):
     @classmethod
     def from_array(cls, arr):
         """
-        Generate :class:`Distribution` object from array
+        Generate :class:`scieconlib.gametheory.multi_armed_bandit.distribution.Distribution` object from array
 
         .. code-block:: python
 
@@ -89,7 +90,7 @@ class Distribution(object):
         :param arr: sample array
         :type arr: list/ndarray
         :return: :class:`Distribution` object
-        :rtype: Distribution
+        :rtype: scieconlib.gametheory.multi_armed_bandit.distribution.Distribution
         """
         dist_func = cls.array_to_dist(arr)
         return cls.from_dist_func(dist_func)

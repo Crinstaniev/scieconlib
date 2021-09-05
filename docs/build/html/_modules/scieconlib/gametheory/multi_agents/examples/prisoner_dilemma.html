@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scieconlib.gametheory.multi_agents.examples.prisoner_dilemma &mdash; scieconlib 0.0.4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> scieconlib
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../get_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../categories.html">Categories</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">scieconlib</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>scieconlib.gametheory.multi_agents.examples.prisoner_dilemma</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for scieconlib.gametheory.multi_agents.examples.prisoner_dilemma</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">scieconlib.gametheory.multi_agents.agent</span> <span class="kn">import</span> <span class="n">Agent</span>
+<span class="kn">from</span> <span class="nn">scieconlib.gametheory.multi_agents.model</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="PrisonerAgent"><a class="viewcode-back" href="../../../../../game_theory/multi_agents/examples.html#scieconlib.gametheory.multi_agents.examples.prisoner_dilemma.PrisonerAgent">[docs]</a><span class="k">class</span> <span class="nc">PrisonerAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implement the prisoner agent in Prisoner&#39;s Dilemma</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="PrisonerAgent.__init__"><a class="viewcode-back" href="../../../../../game_theory/multi_agents/examples.html#scieconlib.gametheory.multi_agents.examples.prisoner_dilemma.PrisonerAgent.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        We define two action.</span>
+<span class="sd">        ``action 0`` for staying silence and</span>
+<span class="sd">        ``action 1`` for betraying</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">action_num</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PrisonerAgent.roll"><a class="viewcode-back" href="../../../../../game_theory/multi_agents/examples.html#scieconlib.gametheory.multi_agents.examples.prisoner_dilemma.PrisonerAgent.roll">[docs]</a>    <span class="k">def</span> <span class="nf">roll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a action number.</span>
+<span class="sd">        Determine whether to explore or exploit by epsilon value</span>
+
+<span class="sd">        :param epsilon: epsilon value</span>
+<span class="sd">        :type epsilon: float</span>
+<span class="sd">        :return: action to take</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">exploit</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="c1"># generate random float</span>
+        <span class="n">rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">rand</span> <span class="o">&lt;=</span> <span class="n">epsilon</span><span class="p">:</span>
+            <span class="c1"># explore</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action_num</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># exploit</span>
+            <span class="k">return</span> <span class="n">exploit</span></div>
+
+<div class="viewcode-block" id="PrisonerAgent.update"><a class="viewcode-back" href="../../../../../game_theory/multi_agents/examples.html#scieconlib.gametheory.multi_agents.examples.prisoner_dilemma.PrisonerAgent.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eval_res</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">list</span><span class="p">]):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the table according to evaluation result</span>
+
+<span class="sd">        :param eval_res: reward list of agents</span>
+<span class="sd">        :type eval_res: list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rewards</span><span class="p">,</span> <span class="n">actions</span> <span class="o">=</span> <span class="n">eval_res</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="n">rewards</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="p">]</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="n">actions</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="p">]</span>
+        <span class="c1"># update table</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">action</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">action</span><span class="p">,</span> <span class="s1">&#39;cum&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">action</span><span class="p">,</span> <span class="s1">&#39;avg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">action</span><span class="p">,</span> <span class="s1">&#39;cum&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">action</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">]</span>
+        <span class="c1"># finally sort the table by avg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;avg&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="PrisonerModel"><a class="viewcode-back" href="../../../../../game_theory/multi_agents/examples.html#scieconlib.gametheory.multi_agents.examples.prisoner_dilemma.PrisonerModel">[docs]</a><span class="k">class</span> <span class="nc">PrisonerModel</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implement the model to train prisoner agent and we use **epsilon-greedy** algorithm</span>
+<span class="sd">    here for stepping</span>
+
+<span class="sd">    :param agent: prisoner agent class *note: it is a class, not an instance*</span>
+<span class="sd">    :type agent: scieconlib.gametheory.multi_armed_bandit.agent.Agent</span>
+<span class="sd">    :param epsilon: epsilon value</span>
+<span class="sd">    :type epsilon: float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="PrisonerModel.__init__"><a class="viewcode-back" href="../../../../../game_theory/multi_agents/examples.html#scieconlib.gametheory.multi_agents.examples.prisoner_dilemma.PrisonerModel.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agent</span><span class="p">:</span> <span class="n">PrisonerAgent</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">epochs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">agent_copies_num</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
+            <span class="n">agent_copies_num</span><span class="o">=</span><span class="n">agent_copies_num</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">epsilon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_agent</span><span class="p">(</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">agent</span><span class="o">.</span><span class="n">set_number</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_agent</span><span class="p">(</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">agent</span><span class="o">.</span><span class="n">set_number</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rolling_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the epsilon value for rolling</span>
+
+<span class="sd">        :return: epsilon value</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.1</span>
+        <span class="k">return</span> <span class="n">epsilon</span>
+
+<div class="viewcode-block" id="PrisonerModel.eval"><a class="viewcode-back" href="../../../../../game_theory/multi_agents/examples.html#scieconlib.gametheory.multi_agents.examples.prisoner_dilemma.PrisonerModel.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rolling_res</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Evaluate the action set by rule of prisoner&#39;s dilemma.</span>
+<span class="sd">        We define ``action 0`` for staying silent</span>
+<span class="sd">        and ``action 1`` for betraying.</span>
+<span class="sd">        We have two agents ``A`` and ``B``.</span>
+<span class="sd">        If both stay silent, both ``A`` and ``B`` will get ``-1`` reward.</span>
+<span class="sd">        If both betrays, both ``A`` and ``B`` will get ``-2`` reward.</span>
+<span class="sd">        If one stay silent and one betray, the betrayer get ``0`` reward</span>
+<span class="sd">        and the another get ``-3`` reward.</span>
+
+<span class="sd">        **Reference** https://en.wikipedia.org/wiki/Prisoner%27s_dilemma</span>
+
+<span class="sd">        :param rolling_res: the actions chosen by agents</span>
+<span class="sd">        :type rolling_res: list</span>
+<span class="sd">        :return: tuple of evaluation and action list</span>
+<span class="sd">        :rtype: tuple[list[float], list[int]]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rewards</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">rolling_res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">rolling_res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># both stay silent</span>
+            <span class="n">rewards</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># A betray</span>
+            <span class="n">rewards</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># B betray</span>
+            <span class="n">rewards</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># both betray</span>
+            <span class="n">rewards</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">rolling_res</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Crinstaniev.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -163,7 +163,7 @@
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
 
-<div class="viewcode-block" id="Model"><a class="viewcode-back" href="../../../../game_theory/model.html#scieconlib.gametheory.multi_armed_bandit.model.Model">[docs]</a><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Model"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/model.html#scieconlib.gametheory.multi_armed_bandit.model.Model">[docs]</a><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class defined a model for multi-armed bandit problem</span>
 
@@ -193,7 +193,7 @@
 <span class="sd">    :param epochs: epochs to train the model</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Model.__init__"><a class="viewcode-back" href="../../../../game_theory/model.html#scieconlib.gametheory.multi_armed_bandit.model.Model.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">agent_num</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.__init__"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/model.html#scieconlib.gametheory.multi_armed_bandit.model.Model.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">agent_num</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor method</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -218,7 +218,7 @@
             <span class="c1"># do exploit</span>
             <span class="k">return</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="Model.train"><a class="viewcode-back" href="../../../../game_theory/model.html#scieconlib.gametheory.multi_armed_bandit.model.Model.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.train"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/model.html#scieconlib.gametheory.multi_armed_bandit.model.Model.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        train the model</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -255,7 +255,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="n">history</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Model.draw_avg_reward"><a class="viewcode-back" href="../../../../game_theory/model.html#scieconlib.gametheory.multi_armed_bandit.model.Model.draw_avg_reward">[docs]</a>    <span class="k">def</span> <span class="nf">draw_avg_reward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.draw_avg_reward"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/model.html#scieconlib.gametheory.multi_armed_bandit.model.Model.draw_avg_reward">[docs]</a>    <span class="k">def</span> <span class="nf">draw_avg_reward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draw average reward plot</span>
 
@@ -276,7 +276,7 @@
             <span class="k">return</span>
         <span class="k">return</span> <span class="n">fig</span></div>
 
-<div class="viewcode-block" id="Model.draw_avg_freq"><a class="viewcode-back" href="../../../../game_theory/model.html#scieconlib.gametheory.multi_armed_bandit.model.Model.draw_avg_freq">[docs]</a>    <span class="k">def</span> <span class="nf">draw_avg_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.draw_avg_freq"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/model.html#scieconlib.gametheory.multi_armed_bandit.model.Model.draw_avg_freq">[docs]</a>    <span class="k">def</span> <span class="nf">draw_avg_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draw stacked area plot for avg frequency of choosing each action</span>
 

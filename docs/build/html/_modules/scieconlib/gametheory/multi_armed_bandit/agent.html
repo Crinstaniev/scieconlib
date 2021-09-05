@@ -161,12 +161,12 @@
 <span class="kn">from</span> <span class="nn">.action</span> <span class="kn">import</span> <span class="n">Action</span>
 
 
-<div class="viewcode-block" id="Agent"><a class="viewcode-back" href="../../../../game_theory/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent">[docs]</a><span class="k">class</span> <span class="nc">Agent</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Agent"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent">[docs]</a><span class="k">class</span> <span class="nc">Agent</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class defined an agent</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Agent.__init__"><a class="viewcode-back" href="../../../../game_theory/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Agent.__init__"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor method</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -178,7 +178,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">action_num</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">actions</span> <span class="o">=</span> <span class="p">[]</span></div>
 
-<div class="viewcode-block" id="Agent.add_action"><a class="viewcode-back" href="../../../../game_theory/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent.add_action">[docs]</a>    <span class="k">def</span> <span class="nf">add_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="Agent.add_action"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent.add_action">[docs]</a>    <span class="k">def</span> <span class="nf">add_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Insert an action</span>
 
@@ -210,7 +210,7 @@
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Added: </span><span class="si">{</span><span class="n">action</span><span class="o">.</span><span class="n">get_num</span><span class="p">()</span><span class="si">}</span><span class="s1">: &#39;</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Agent.take"><a class="viewcode-back" href="../../../../game_theory/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent.take">[docs]</a>    <span class="k">def</span> <span class="nf">take</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_num</span><span class="p">):</span>
+<div class="viewcode-block" id="Agent.take"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent.take">[docs]</a>    <span class="k">def</span> <span class="nf">take</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_num</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Take an action</span>
 
@@ -225,7 +225,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="p">[</span><span class="n">action_num</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cum</span><span class="p">[</span><span class="n">action_num</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">action_num</span><span class="p">])</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Agent.get_avg"><a class="viewcode-back" href="../../../../game_theory/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent.get_avg">[docs]</a>    <span class="k">def</span> <span class="nf">get_avg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Agent.get_avg"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent.get_avg">[docs]</a>    <span class="k">def</span> <span class="nf">get_avg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate the average value</span>
 
@@ -234,7 +234,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cum</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Agent.get_greedy"><a class="viewcode-back" href="../../../../game_theory/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent.get_greedy">[docs]</a>    <span class="k">def</span> <span class="nf">get_greedy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Agent.get_greedy"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent.get_greedy">[docs]</a>    <span class="k">def</span> <span class="nf">get_greedy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Rank the expected values and return the number of largest</span>
 
@@ -243,7 +243,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Agent.pick_action"><a class="viewcode-back" href="../../../../game_theory/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent.pick_action">[docs]</a>    <span class="k">def</span> <span class="nf">pick_action</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Agent.pick_action"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent.pick_action">[docs]</a>    <span class="k">def</span> <span class="nf">pick_action</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Pick a random action</span>
 
@@ -253,7 +253,7 @@
         <span class="n">num</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">action_num</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">num</span></div>
 
-<div class="viewcode-block" id="Agent.get_info"><a class="viewcode-back" href="../../../../game_theory/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent.get_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">printing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Agent.get_info"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/agent.html#scieconlib.gametheory.multi_armed_bandit.agent.Agent.get_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">printing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Printing actions info</span>
 

@@ -14,7 +14,7 @@ setup(
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     packages=find_packages(),
-    install_requires=['plotly', 'numpy', 'pandas', 'scipy', 'tqdm'],
+    install_requires=['plotly', 'numpy', 'pandas', 'scipy', 'tqdm', 'matplotlib'],
     # license='GPL',
     keywords=['python', 'game theory', 'economy'],
     classifiers=[

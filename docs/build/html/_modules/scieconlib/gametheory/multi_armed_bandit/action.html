@@ -157,14 +157,15 @@
 <span></span><span class="kn">from</span> <span class="nn">.distribution</span> <span class="kn">import</span> <span class="n">Distribution</span>
 
 
-<div class="viewcode-block" id="Action"><a class="viewcode-back" href="../../../../game_theory/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action">[docs]</a><span class="k">class</span> <span class="nc">Action</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Action"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action">[docs]</a><span class="k">class</span> <span class="nc">Action</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class defined an action.</span>
+
 <span class="sd">    :param distribution: The distribution function</span>
 <span class="sd">    :type distribution: Distribution</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Action.__init__"><a class="viewcode-back" href="../../../../game_theory/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distribution</span><span class="p">):</span>
+<div class="viewcode-block" id="Action.__init__"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distribution</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor method</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -174,10 +175,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">distribution</span> <span class="o">=</span> <span class="n">distribution</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="mi">0</span></div>
 
-<div class="viewcode-block" id="Action.from_distribution_func"><a class="viewcode-back" href="../../../../game_theory/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.from_distribution_func">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Action.from_distribution_func"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.from_distribution_func">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_distribution_func</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dist_func</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generate an :class:`Action` object from distribution function</span>
+<span class="sd">        Generate an :class:`scieconlib.gametheory.multi_armed_bandit.action.Action` object from distribution function</span>
 
 <span class="sd">        .. code-block:: python</span>
 
@@ -190,16 +191,16 @@
 
 <span class="sd">        :param dist_func: function that returns a random number from the distribution</span>
 <span class="sd">        :type dist_func: function</span>
-<span class="sd">        :return: :class:`Action` object</span>
-<span class="sd">        :rtype: Action</span>
+<span class="sd">        :return: :class:`scieconlib.gametheory.multi_armed_bandit.action.Action` object</span>
+<span class="sd">        :rtype: scieconlib.gametheory.multi_armed_bandit.action.Action</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dist</span> <span class="o">=</span> <span class="n">Distribution</span><span class="o">.</span><span class="n">from_dist_func</span><span class="p">(</span><span class="n">dist_func</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Action.from_array"><a class="viewcode-back" href="../../../../game_theory/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.from_array">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Action.from_array"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.from_array">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_array</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">arr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Construct an :class:`Action` from samples</span>
+<span class="sd">        Construct an :class:`scieconlib.gametheory.multi_armed_bandit.action.Action` from samples</span>
 
 <span class="sd">        .. code-block:: python</span>
 
@@ -207,13 +208,13 @@
 
 <span class="sd">        :param arr: sample array</span>
 <span class="sd">        :type arr: list</span>
-<span class="sd">        :return: :class:`Action` object</span>
-<span class="sd">        :rtype: Action</span>
+<span class="sd">        :return: :class:`scieconlib.gametheory.multi_armed_bandit.action.Action` object</span>
+<span class="sd">        :rtype: scieconlib.gametheory.multi_armed_bandit.action.Action</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">distribution</span> <span class="o">=</span> <span class="n">Distribution</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">distribution</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Action.generate"><a class="viewcode-back" href="../../../../game_theory/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Action.generate"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate random number from distribution</span>
 
@@ -222,7 +223,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Action.get_num"><a class="viewcode-back" href="../../../../game_theory/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.get_num">[docs]</a>    <span class="k">def</span> <span class="nf">get_num</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Action.get_num"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.get_num">[docs]</a>    <span class="k">def</span> <span class="nf">get_num</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the number of action</span>
 
@@ -231,7 +232,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span></div>
 
-<div class="viewcode-block" id="Action.set_num"><a class="viewcode-back" href="../../../../game_theory/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.set_num">[docs]</a>    <span class="k">def</span> <span class="nf">set_num</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+<div class="viewcode-block" id="Action.set_num"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.set_num">[docs]</a>    <span class="k">def</span> <span class="nf">set_num</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the action number</span>
 
@@ -242,7 +243,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Action.dist_plot"><a class="viewcode-back" href="../../../../game_theory/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.dist_plot">[docs]</a>    <span class="k">def</span> <span class="nf">dist_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<div class="viewcode-block" id="Action.dist_plot"><a class="viewcode-back" href="../../../../game_theory/multi_armed_bandit/action.html#scieconlib.gametheory.multi_armed_bandit.action.Action.dist_plot">[docs]</a>    <span class="k">def</span> <span class="nf">dist_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draw the distribution plot</span>
 

@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Agent class &mdash; scieconlib 0.0.4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Model class" href="model.html" />
+    <link rel="prev" title="Model class" href="../multi_armed_bandit/model.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> scieconlib
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../categories.html">Categories</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Game theory</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#multi-armed-bandit-problem">Multi-armed Bandit Problem</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#multi-agent-models">Multi Agent Models</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Agent class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="model.html">Model class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">scieconlib</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../categories.html">Categories</a> &raquo;</li>
+        
+          <li><a href="../index.html">Game theory</a> &raquo;</li>
+        
+      <li>Agent class</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/game_theory/multi_agents/agent.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="agent-class">
+<h1>Agent class<a class="headerlink" href="#agent-class" title="Permalink to this headline">¶</a></h1>
+<p><strong>Module</strong> scieconlib.gametheory.multi_agents.agent</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="scieconlib.gametheory.multi_agents.agent.Agent">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_num</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/scieconlib/gametheory/multi_agents/agent.html#Agent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scieconlib.gametheory.multi_agents.agent.Agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>This class define an agent class for dual agent RL in game theory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>action_num</strong> (<em>int</em>) – number of actions</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="scieconlib.gametheory.multi_agents.agent.Agent.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_num</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/scieconlib/gametheory/multi_agents/agent.html#Agent.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scieconlib.gametheory.multi_agents.agent.Agent.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scieconlib.gametheory.multi_agents.agent.Agent.get_table">
+<span class="sig-name descname"><span class="pre">get_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/scieconlib/gametheory/multi_agents/agent.html#Agent.get_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scieconlib.gametheory.multi_agents.agent.Agent.get_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>verbose</strong> (<em>int</em>) – whether to print info</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value table</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scieconlib.gametheory.multi_agents.agent.Agent.roll">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">roll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/scieconlib/gametheory/multi_agents/agent.html#Agent.roll"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scieconlib.gametheory.multi_agents.agent.Agent.roll" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method generate a action number according to some rule</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>info</strong> (<em>any</em>) – information needed for doing a roll</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>action number</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scieconlib.gametheory.multi_agents.agent.Agent.set_number">
+<span class="sig-name descname"><span class="pre">set_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/scieconlib/gametheory/multi_agents/agent.html#Agent.set_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scieconlib.gametheory.multi_agents.agent.Agent.set_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the agent number</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>number</strong> (<em>int</em>) – agent number</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the agent object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#scieconlib.gametheory.multi_agents.agent.Agent" title="scieconlib.gametheory.multi_agents.agent.Agent">scieconlib.gametheory.multi_agents.agent.Agent</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scieconlib.gametheory.multi_agents.agent.Agent.update">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eval_res</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/scieconlib/gametheory/multi_agents/agent.html#Agent.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scieconlib.gametheory.multi_agents.agent.Agent.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method update the table by some rule</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>eval_res</strong> (<em>object</em>) – model evaluation result</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="model.html" class="btn btn-neutral float-right" title="Model class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../multi_armed_bandit/model.html" class="btn btn-neutral float-left" title="Model class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Crinstaniev.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
