@@ -38,7 +38,7 @@ class PrisonerAgent(Agent):
             # exploit
             return exploit
 
-    def update(self, eval_res: tuple[list, list]):
+    def update(self, eval_res: tuple):
         """
         Update the table according to evaluation result
 
@@ -87,7 +87,7 @@ class PrisonerModel(Model):
         epsilon = 0.1
         return epsilon
 
-    def eval(self, rolling_res: list[int]):
+    def eval(self, rolling_res: list):
         """
         Evaluate the action set by rule of prisoner's dilemma.
         We define ``action 0`` for staying silent
